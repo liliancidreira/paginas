@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WClub</title>
+<link rel="icon" type="image/png" href="assets/logo-escuro.png">
+<link rel="apple-touch-icon" href="assets/logo-escuro.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ===== TOKENS ===== */
+:root {
+  --ivory:       #FAF8F5;
+  --cream:       #F2ECE4;
+  --wine:        #1C0010;
+  --wine-mid:    #370018;
+  --gold:        #B8922A;
+  --gold-faint:  rgba(184,146,42,0.10);
+  --gold-border: rgba(184,146,42,0.28);
+  --text:        #1C0010;
+  --muted:       rgba(28,0,16,0.54);
+  --muted-light: rgba(250,248,245,0.62);
+  --font-serif:  'Playfair Display', Georgia, serif;
+  --font-sans:   'Inter', system-ui, sans-serif;
+  --max:         860px;
+  --max-wide:    1100px;
+  --px:          clamp(24px, 6vw, 80px);
+}
+
+/* ===== BASE ===== */
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  background: var(--ivory);
+  color: var(--text);
+  font-size: 17px;
+  line-height: 1.72;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== UTILITIES ===== */
+.wrap  { max-width: var(--max);      margin: 0 auto; padding: 0 var(--px); }
+.wrap-w{ max-width: var(--max-wide); margin: 0 auto; padding: 0 var(--px); }
+
+.eyebrow {
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 3.5px; text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* ===== BOTAO ===== */
+.btn {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--wine);
+  font-family: var(--font-sans);
+  font-size: 13px; font-weight: 600;
+  letter-spacing: 1.8px; text-transform: uppercase;
+  text-decoration: none;
+  padding: 18px 44px;
+  border: none; cursor: pointer;
+  transition: opacity .18s;
+}
+.btn:hover { opacity: .84; }
+
+/* ===== 01  HERO ===== */
+.hero {
+  background: var(--wine);
+  color: var(--ivory);
+  padding: 108px var(--px) 88px;
+  position: relative; overflow: hidden;
+}
+.hero::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 80% 30%,
+    rgba(184,146,42,.07) 0%, transparent 60%);
+  pointer-events: none;
+}
+.hero__inner { max-width: var(--max); margin: 0 auto; position: relative; z-index: 1; }
+
+.hero__logo {
+  display: block;
+  width: 190px; height: 190px;
+  margin-bottom: 36px;
+}
+.oferta-final__logo {
+  display: block;
+  width: 140px; height: 140px;
+  margin: 0 auto 36px;
+}
+@media (max-width: 768px) {
+  .hero__logo { width: 150px; height: 150px; }
+  .oferta-final__logo { width: 110px; height: 110px; }
+}
+
+.hero__h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(30px, 4.2vw, 56px);
+  font-weight: 600; line-height: 1.17;
+  color: var(--ivory);
+  margin-bottom: 28px;
+  letter-spacing: -.4px;
+}
+
+.hero__sub {
+  font-size: 16px;
+  color: var(--muted-light);
+  max-width: 640px; line-height: 1.7;
+  margin-bottom: 40px;
+}
+
+.hero__bullets {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 14px;
+  margin-bottom: 56px; max-width: 620px;
+}
+.hero__bullets li {
+  display: flex; align-items: flex-start; gap: 14px;
+  font-size: 15px; color: rgba(250,248,245,.78); line-height: 1.58;
+}
+.hero__bullets li::before {
+  content: '';
+  display: block; width: 5px; height: 5px;
+  border-radius: 50%; background: var(--gold);
+  margin-top: 8px; flex-shrink: 0; opacity: .7;
+}
+
+
+/* ===== 02  DOR ===== */
+.dor {
+  background: var(--ivory);
+  padding: 96px var(--px);
+}
+.dor__h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(22px, 2.8vw, 36px);
+  font-weight: 600; line-height: 1.28;
+  color: var(--wine);
+  margin-bottom: 40px;
+}
+.dor__body { display: flex; flex-direction: column; gap: 20px; }
+.dor__body p { font-size: 17px; color: var(--muted); line-height: 1.76; }
+
+/* ===== 03  PALIATIVOS ===== */
+.pal {
+  background: var(--wine-mid);
+  color: var(--ivory);
+  padding: 96px var(--px);
+}
+.pal__h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(22px, 2.8vw, 36px);
+  font-weight: 600; line-height: 1.28;
+  color: var(--ivory);
+  margin-bottom: 36px;
+}
+.pal__body { display: flex; flex-direction: column; gap: 20px; }
+.pal__body p { font-size: 17px; color: var(--muted-light); line-height: 1.76; max-width: 760px; }
+
+/* ===== CTA STRIP ===== */
+.cta-strip {
+  background: var(--wine);
+  padding: 64px var(--px);
+  text-align: center;
+  border-top: 1px solid var(--gold-border);
+  border-bottom: 1px solid var(--gold-border);
+}
+.cta-strip__quote {
+  font-family: var(--font-serif);
+  font-size: clamp(18px, 2.2vw, 24px);
+  font-style: italic; font-weight: 400;
+  color: rgba(250,248,245,.80);
+  margin-bottom: 10px;
+}
+.cta-strip__scarcity {
+  font-size: 12px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 32px;
+}
+
+/* ===== 06  METODO ===== */
+.metodo {
+  background: var(--ivory);
+  padding: 96px var(--px);
+}
+.metodo__h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(22px, 2.8vw, 38px);
+  font-weight: 600; line-height: 1.25;
+  color: var(--wine); margin-bottom: 32px;
+}
+.metodo__intro { display: flex; flex-direction: column; gap: 18px; margin-bottom: 60px; }
+.metodo__intro p { font-size: 17px; color: var(--muted); line-height: 1.76; }
+
+.metodo__steps { display: flex; flex-direction: column; }
+.metodo__step {
+  display: grid; grid-template-columns: 72px 1fr;
+  gap: 0 20px; padding: 32px 0;
+  border-bottom: 1px solid rgba(28,0,16,.08);
+}
+.metodo__step:first-child { border-top: 1px solid rgba(28,0,16,.08); }
+.metodo__n {
+  font-family: var(--font-serif);
+  font-size: 44px; font-weight: 700;
+  color: var(--gold); opacity: .28;
+  line-height: 1; padding-top: 2px;
+}
+.metodo__step-tag {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--gold); opacity: .7;
+  margin-bottom: 8px;
+}
+.metodo__step-title {
+  font-family: var(--font-sans);
+  font-size: 16px; font-weight: 600;
+  color: var(--wine); margin-bottom: 8px;
+}
+.metodo__step-text { font-size: 15px; color: var(--muted); line-height: 1.68; }
+
+/* ===== 07  PARA QUEM ===== */
+.paraquem {
+  background: var(--wine);
+  color: var(--ivory);
+  padding: 96px var(--px);
+}
+.paraquem__h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(22px, 2.8vw, 38px);
+  font-weight: 600; line-height: 1.25;
+  color: var(--ivory); margin-bottom: 24px;
+}
+.paraquem__intro {
+  font-size: 17px; color: var(--muted-light);
+  line-height: 1.76; margin-bottom: 44px;
+}
+.paraquem__list { list-style: none; display: flex; flex-direction: column; }
+.paraquem__list li {
+  display: flex; align-items: flex-start; gap: 16px;
+  font-size: 16px; color: rgba(250,248,245,.82); line-height: 1.6;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(184,146,42,.12);
+}
+.paraquem__list li:first-child { border-top: 1px solid rgba(184,146,42,.12); }
+.paraquem__check {
+  width: 16px; height: 16px; flex-shrink: 0;
+  border: 1px solid rgba(184,146,42,.45); border-radius: 2px;
+  margin-top: 3px; position: relative;
+}
+.paraquem__check::after {
+  content: '';
+  position: absolute; top: 2px; left: 3px;
+  width: 6px; height: 8px;
+  border-right: 1.5px solid var(--gold);
+  border-bottom: 1.5px solid var(--gold);
+  transform: rotate(42deg) translate(-1px,-1px);
+}
+.paraquem__nao {
+  font-size: 15px; font-style: italic;
+  color: rgba(250,248,245,.38);
+  margin-top: 28px; line-height: 1.65;
+  padding-top: 28px;
+  border-top: 1px solid rgba(184,146,42,.10);
+}
+
+/* ===== 08  ENTREGAVEIS ===== */
+.ent {
+  background: var(--cream);
+  padding: 96px var(--px);
+}
+.ent__h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(22px, 2.8vw, 38px);
+  font-weight: 600; color: var(--wine);
+  margin-bottom: 52px;
+}
+.ent__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+  gap: 1px;
+  background: rgba(28,0,16,.07);
+  outline: 1px solid rgba(28,0,16,.07);
+}
+.ent__item {
+  background: var(--cream);
+  padding: 32px 28px;
+}
+.ent__item-bar {
+  width: 20px; height: 1.5px;
+  background: var(--gold); opacity: .45;
+  margin-bottom: 16px;
+}
+.ent__item-title {
+  font-size: 13px; font-weight: 600;
+  letter-spacing: .8px; text-transform: uppercase;
+  color: var(--wine); margin-bottom: 10px;
+}
+.ent__item-text { font-size: 15px; color: var(--muted); line-height: 1.65; }
+
+/* ===== 09  BONUS ===== */
+.bonus {
+  background: var(--wine-mid);
+  color: var(--ivory);
+  padding: 96px var(--px);
+}
+.bonus__h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(22px, 2.8vw, 38px);
+  font-weight: 600; color: var(--ivory);
+  margin-bottom: 56px;
+}
+.bonus__items { display: flex; flex-direction: column; gap: 0; }
+.bonus__item {
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 16px 40px; padding: 36px 0;
+  border-bottom: 1px solid rgba(184,146,42,.14);
+  align-items: start;
+}
+.bonus__item:first-child { border-top: 1px solid rgba(184,146,42,.14); }
+.bonus__badge {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--gold); opacity: .7; margin-bottom: 8px;
+}
+.bonus__title {
+  font-family: var(--font-serif);
+  font-size: 20px; font-weight: 600;
+  color: var(--ivory); line-height: 1.3; margin-bottom: 10px;
+}
+.bonus__text { font-size: 15px; color: var(--muted-light); line-height: 1.65; }
+.bonus__val { text-align: right; flex-shrink: 0; }
+.bonus__val-label {
+  font-size: 10px; letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(250,248,245,.30); margin-bottom: 4px;
+}
+.bonus__val-num {
+  font-family: var(--font-serif);
+  font-size: 22px; font-weight: 600;
+  color: var(--gold); white-space: nowrap;
+}
+
+/* ===== 10  OFERTA ===== */
+.oferta {
+  background: var(--ivory);
+  padding: 96px var(--px);
+}
+.oferta__card {
+  background: var(--cream);
+  border: 1px solid rgba(28,0,16,.09);
+  padding: 60px 56px; max-width: 720px; margin: 0 auto;
+}
+.oferta__eyebrow { margin-bottom: 24px; }
+.oferta__h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(22px, 2.5vw, 34px);
+  font-weight: 600; color: var(--wine);
+  line-height: 1.28; margin-bottom: 20px;
+}
+.oferta__body {
+  font-size: 16px; color: var(--muted);
+  line-height: 1.72; margin-bottom: 40px;
+}
+.oferta__prices {
+  display: flex; align-items: center; gap: 36px;
+  padding: 28px 0;
+  border-top: 1px solid rgba(28,0,16,.08);
+  border-bottom: 1px solid rgba(28,0,16,.08);
+  margin-bottom: 36px;
+}
+.oferta__price-lbl {
+  font-size: 11px; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 6px;
+}
+.oferta__price-num {
+  font-family: var(--font-serif);
+  font-size: 38px; font-weight: 700; color: var(--wine); line-height: 1;
+}
+.oferta__price-alt {
+  font-size: 15px; color: var(--muted);
+  padding-left: 36px;
+  border-left: 1px solid rgba(28,0,16,.09);
+}
+
+/* ===== 12  SUPORTE ===== */
+.suporte {
+  background: var(--cream);
+  padding: 88px var(--px);
+}
+.suporte__quote {
+  font-family: var(--font-serif);
+  font-size: clamp(20px, 2.2vw, 30px);
+  font-style: italic; font-weight: 400;
+  color: var(--wine); line-height: 1.45;
+  margin-bottom: 24px;
+}
+.suporte__body { font-size: 17px; color: var(--muted); line-height: 1.76; }
+
+/* ===== 13  GARANTIA ===== */
+.garantia {
+  background: var(--wine);
+  color: var(--ivory);
+  padding: 96px var(--px);
+}
+.garantia__inner { max-width: 640px; margin: 0 auto; text-align: center; }
+.garantia__seal {
+  width: 120px; height: 120px;
+  border: 1.5px solid var(--gold-border);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 36px;
+}
+.garantia__seal span {
+  font-family: var(--font-serif);
+  font-size: 14px; line-height: 1.6;
+  text-align: center; color: var(--gold);
+  letter-spacing: .8px;
+}
+.garantia__h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(22px, 2.5vw, 32px);
+  font-weight: 600; color: var(--ivory); margin-bottom: 24px;
+}
+.garantia__text { font-size: 16px; color: var(--muted-light); line-height: 1.76; }
+
+/* ===== 14  AUTORIDADE ===== */
+.autoridade {
+  background: var(--ivory);
+  padding: 96px var(--px);
+}
+.autoridade__grid {
+  display: grid; grid-template-columns: 340px 1fr;
+  gap: 72px; align-items: start;
+  max-width: var(--max-wide); margin: 0 auto;
+}
+.autoridade__foto {
+  background: var(--cream);
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  border: 1px solid rgba(28,0,16,.07);
+}
+.autoridade__foto img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center top;
+  display: block;
+}
+.autoridade__eyebrow { margin-bottom: 16px; }
+.autoridade__h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(26px, 3vw, 42px);
+  font-weight: 600; color: var(--wine);
+  line-height: 1.2; margin-bottom: 32px;
+}
+.autoridade__body { display: flex; flex-direction: column; gap: 16px; }
+.autoridade__body p { font-size: 16px; color: var(--muted); line-height: 1.72; }
+
+/* ===== 15  FAQ ===== */
+.faq {
+  background: var(--cream);
+  padding: 96px var(--px);
+}
+.faq__h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(22px, 2.8vw, 38px);
+  font-weight: 600; color: var(--wine); margin-bottom: 52px;
+}
+.faq__list { max-width: var(--max); margin: 0 auto; display: flex; flex-direction: column; }
+.faq__row { border-bottom: 1px solid rgba(28,0,16,.09); }
+.faq__q {
+  display: flex; justify-content: space-between;
+  align-items: center; gap: 24px;
+  padding: 24px 0; cursor: pointer;
+  font-size: 16px; font-weight: 500;
+  color: var(--wine); line-height: 1.45;
+  background: none; border: none; width: 100%; text-align: left;
+  font-family: var(--font-sans);
+}
+.faq__icon {
+  width: 22px; height: 22px; flex-shrink: 0;
+  border: 1px solid rgba(28,0,16,.20);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; color: var(--gold);
+  transition: transform .2s, border-color .2s;
+}
+.faq__a {
+  display: none; padding: 0 0 24px;
+  font-size: 16px; color: var(--muted); line-height: 1.72;
+  max-width: 720px;
+}
+.faq__row.open .faq__a { display: block; }
+.faq__row.open .faq__icon { transform: rotate(45deg); border-color: var(--gold); }
+
+/* ===== 16  OFERTA FINAL ===== */
+.oferta-final {
+  background: var(--wine);
+  color: var(--ivory);
+  padding: 108px var(--px) 96px;
+  text-align: center;
+  position: relative;
+}
+.oferta-final::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(184,146,42,.35), transparent);
+}
+.oferta-final__inner { max-width: 620px; margin: 0 auto; position: relative; z-index: 1; }
+.oferta-final__h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(28px, 3.8vw, 52px);
+  font-weight: 600; line-height: 1.18;
+  color: var(--ivory); margin-bottom: 24px;
+}
+.oferta-final__sub {
+  font-size: 17px; color: var(--muted-light);
+  line-height: 1.72; margin-bottom: 52px;
+}
+.oferta-final__prices {
+  display: flex; justify-content: center; gap: 56px;
+  padding: 36px 0;
+  border-top: 1px solid rgba(184,146,42,.15);
+  border-bottom: 1px solid rgba(184,146,42,.15);
+  margin-bottom: 48px;
+}
+.oferta-final__price-lbl {
+  font-size: 11px; letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(250,248,245,.38); margin-bottom: 8px;
+}
+.oferta-final__price-num {
+  font-family: var(--font-serif);
+  font-size: 36px; font-weight: 700; color: var(--ivory);
+}
+.oferta-final__price-alt {
+  font-size: 16px; color: rgba(250,248,245,.50);
+}
+.oferta-final__nota {
+  font-size: 14px; color: rgba(250,248,245,.35);
+  margin-top: 28px; line-height: 1.65; font-style: italic;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  :root { --px: 20px; }
+
+  body { font-size: 16px; padding-bottom: 0; }
+
+  /* Seções: padding vertical menor */
+  .hero       { padding: 72px 20px 56px; }
+  .dor        { padding: 64px 20px; }
+  .pal        { padding: 64px 20px; }
+  .cta-strip  { padding: 48px 20px; }
+  .metodo     { padding: 64px 20px; }
+  .paraquem   { padding: 64px 20px; }
+  .ent        { padding: 64px 20px; }
+  .bonus      { padding: 64px 20px; }
+  .oferta     { padding: 64px 20px; }
+  .suporte    { padding: 64px 20px; }
+  .garantia   { padding: 64px 20px; }
+  .autoridade { padding: 64px 20px; }
+  .faq        { padding: 64px 20px; }
+  .oferta-final { padding: 80px 20px 64px; }
+
+  /* Layout */
+  .autoridade__grid { grid-template-columns: 1fr; gap: 36px; }
+  .autoridade__foto { aspect-ratio: 4/3; }
+  .oferta__card { padding: 36px 20px; margin: 0; }
+  .oferta__prices { flex-direction: column; gap: 16px; }
+  .oferta__price-alt { border-left: none; border-top: 1px solid rgba(28,0,16,.08); padding: 16px 0 0; }
+  .oferta__price-num { font-size: 30px; }
+  .metodo__step { grid-template-columns: 48px 1fr; gap: 0 12px; }
+  .metodo__n { font-size: 30px; }
+  .bonus__item { grid-template-columns: 1fr; gap: 12px; }
+  .bonus__val { text-align: left; }
+  .ent__grid { grid-template-columns: 1fr; }
+  .oferta-final__prices { flex-direction: column; gap: 20px; align-items: center; }
+  .oferta-final__price-num { font-size: 30px; }
+  .faq__q { font-size: 15px; padding: 20px 0; }
+  .cta-strip__quote { font-size: 16px; }
+
+  /* Botão full width no mobile */
+  .btn { display: block; width: 100%; text-align: center; padding: 18px 24px; }
+  .cta-strip .btn,
+  .oferta .btn,
+  .oferta-final .btn { max-width: 440px; margin-left: auto; margin-right: auto; }
+
+  /* Garantia centrada */
+  .garantia__inner { text-align: center; }
+
+  /* Hero bullets mais compactos */
+  .hero__bullets { gap: 12px; }
+  .hero__video { padding: 40px 20px; }
+}
+
+/* ===== FLOATING CTA (MOBILE ONLY) ===== */
+.float-cta {
+  display: none;
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+  background: var(--wine);
+  border-top: 1px solid var(--gold-border);
+  padding: 10px 20px max(12px, env(safe-area-inset-bottom));
+  transform: translateY(100%);
+  transition: transform .32s cubic-bezier(.4,0,.2,1);
+  box-shadow: 0 -4px 24px rgba(28,0,16,.3);
+}
+.float-cta.visible { transform: translateY(0); }
+.float-cta__inner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; max-width: 600px; margin: 0 auto;
+}
+.float-cta__info {}
+.float-cta__label {
+  font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(250,248,245,.38); line-height: 1;
+}
+.float-cta__price {
+  font-family: var(--font-serif);
+  font-size: 18px; font-weight: 600; color: var(--ivory); line-height: 1.2;
+}
+.float-cta__btn {
+  flex-shrink: 0;
+  background: var(--gold);
+  color: var(--wine);
+  font-family: var(--font-sans);
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 1.8px; text-transform: uppercase;
+  text-decoration: none;
+  padding: 14px 20px;
+  white-space: nowrap;
+  transition: opacity .18s;
+}
+.float-cta__btn:hover { opacity: .84; }
+
+@media (max-width: 768px) {
+  .float-cta { display: block; }
+  body.bar-visible { padding-bottom: 72px; }
+}
+</style>
+</head>
+<body>
+
+<!-- 01 HERO -->
+<section class="hero">
+  <div class="hero__inner">
+
+    <img src="assets/logo-escuro.png" alt="WClub" class="hero__logo">
+
+    <h1 class="hero__h1">
+      Você deveria ter um grupo de mulheres que conhece o seu negócio a fundo e quer que você chegue lá.
+    </h1>
+
+    <p class="hero__sub">
+      Criado por uma empreendedora que construiu a mesa que queria estar. Para mulheres com negócio ativo que sabem que a próxima virada vem da sala certa. Com protocolo de indicações, curadoria de perfil e encontros que geram contratos reais.
+    </p>
+
+    <ul class="hero__bullets">
+      <li>Você recebe indicações de quem conhece o seu negócio por dentro. Não é sorte, é protocolo.</li>
+      <li>Você está numa sala construída para o jeito que mulheres empreendedoras crescem em rede.</li>
+      <li>Um contrato dentro do clube cobre a anuidade inteira. O restante do ano, a rede trabalha por você.</li>
+    </ul>
+
+    <a href="https://form.typeform.com/to/I571G6yO" target="_blank" rel="noopener" class="btn">Quero aplicar como Membro Fundadora</a>
+
+  </div>
+</section>
+
+<!-- 02 DOR -->
+<section class="dor">
+  <div class="wrap">
+    <h2 class="dor__h2">
+      Você tem centenas de contatos e não tem um contato realmente próximo com ninguém.
+    </h2>
+    <div class="dor__body">
+      <p>Você está numa mentoria. Ou num mastermind. Talvez nos dois ao mesmo tempo. Conhece empreendedoras que admira, troca mensagem, aparece nos eventos do setor, segue e é seguida.</p>
+      <p>Mas quando alguém pergunta como é o seu networking, a resposta honesta é: conheço muita gente, mas não acho que alguém me indicaria se eu precisar.</p>
+      <p>O problema está no ambiente, não na quantidade de contatos. Masterminds foram construídas para compartilhar estratégia de negócio. Mentorias, para transmitir método. Eventos, para exposição pontual. Nenhum desses formatos tem como objetivo central fazer com que as participantes se conheçam a ponto de se indicarem de forma consistente.</p>
+      <p>E tem outro ponto que poucas falam com honestidade: falar do próprio negócio em qualquer ambiente parece venda. Você fica em dúvida sobre quando falar o que você faz, como apresentar o serviço sem parecer que foi ali só para se promover. Se falar demais, parece desesperada. Se falar de menos, sai invisível.</p>
+      <p>Então você troca contato, segue no Instagram, aguarda. Mas isso não resulta em negócio porque ninguém sabia exatamente do que você precisava, e ninguém tinha protocolo para fazer essa ponte.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 PALIATIVOS -->
+<section class="pal">
+  <div class="wrap">
+    <h2 class="pal__h2">
+      Você provavelmente já esteve em pelo menos um deles.
+    </h2>
+    <div class="pal__body">
+      <p>Clube de networking, comunidade online, mastermind, eventos do setor, grupos de troca entre empreendedoras. Cada um trouxe algo real: contato, aprendizado, visibilidade, inspiração.</p>
+      <p>O que faltou em todos eles é o mesmo: um protocolo estruturado que transforma o relacionamento com as outras participantes em indicações ativas e recorrentes.</p>
+      <p>Em qualquer desses ambientes, a indicação depende de boa vontade, de memória e de timing. A pessoa precisa lembrar de você, precisar de alguém com o seu perfil e ter disposição para fazer a ponte no momento certo. Quando as três condições coincidem, funciona. Quando não coincidem, não acontece nada.</p>
+      <p>A outra peça ausente é a curadoria de quem está na sala. Quando o grupo reúne perfis muito diferentes, a probabilidade de match comercial cai para o acaso. Você pode estar no grupo certo e ainda assim não encontrar quem precisa do que você faz.</p>
+      <p>Esses ambientes têm valor real. O que ainda está ausente é um espaço construído especificamente para o jeito que mulheres fazem negócio: colaborativo, com foco em desenvolvimento, com curadoria de perfil e com protocolo que transforma relações reais em contratos reais.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA INTERMEDIARIO -->
+<section class="cta-strip" id="aplicar">
+  <div class="wrap">
+    <p class="cta-strip__quote">Se você chegou até aqui reconhecendo o que falta, provavelmente já sabe que precisa de algo diferente.</p>
+    <p class="cta-strip__scarcity">10 vagas de Membro Fundadora</p>
+    <a href="https://form.typeform.com/to/I571G6yO" target="_blank" rel="noopener" class="btn">Quero aplicar como Membro Fundadora</a>
+  </div>
+</section>
+
+<!-- 06 METODO -->
+<section class="metodo">
+  <div class="wrap">
+    <h2 class="metodo__h2">
+      O Método WClub foi construído para eliminar o aleatório das indicações entre mulheres empreendedoras.
+    </h2>
+    <div class="metodo__intro">
+      <p>A razão pela qual indicações entre as participantes não funcionam na maioria dos ambientes é conhecida: dependem de três condições que raramente se alinham ao mesmo tempo. A outra participante precisa lembrar de você no momento certo, precisar de alguém com o seu perfil naquele momento e ter disposição para fazer a ponte.</p>
+      <p>O protocolo resolve isso. Cada encontro tem uma dinâmica estruturada de identificação de oportunidades. As pontes são feitas ativamente durante o encontro, não esperadas depois. O método funciona independente de extroversão ou de saber exatamente como apresentar o próprio negócio.</p>
+      <p>A outra parte que a maioria dos formatos não resolve é a profundidade do relacionamento. Indicações de quem te conhece superficialmente têm menos peso do que indicações de quem conhece o seu negócio por dentro. O WClub foi construído para criar esse segundo tipo de relação: mulheres que participaram de vivências juntas, visitaram a empresa umas das outras e resolveram problemas reais em conjunto indicam de um lugar de confiança real, não de cortesia.</p>
+    </div>
+
+    <div class="metodo__steps">
+      <div class="metodo__step">
+        <div class="metodo__n">01</div>
+        <div>
+          <p class="metodo__step-tag">Etapa</p>
+          <h3 class="metodo__step-title">Entrada e Visibilidade</h3>
+          <p class="metodo__step-text">Protocolo estruturado de apresentação desde o primeiro encontro. Todas as integrantes são vistas, independente de extroversão. Lilian faz as primeiras pontes pessoalmente, identificando oportunidades de match comercial desde o início.</p>
+        </div>
+      </div>
+      <div class="metodo__step">
+        <div class="metodo__n">02</div>
+        <div>
+          <p class="metodo__step-tag">Etapa</p>
+          <h3 class="metodo__step-title">Pontes Ativas</h3>
+          <p class="metodo__step-text">Dinâmica estruturada de indicações dentro e fora do clube. O grupo aprende a identificar e fazer pontes com método. A indicação acontece porque o protocolo cria o momento certo para ela, não porque alguém lembrou de perguntar.</p>
+        </div>
+      </div>
+      <div class="metodo__step">
+        <div class="metodo__n">03</div>
+        <div>
+          <p class="metodo__step-tag">Etapa</p>
+          <h3 class="metodo__step-title">Rodadas de Resultado</h3>
+          <p class="metodo__step-text">Integrantes com resultado compartilham o que funcionou. O grupo resolve problemas reais de forma coletiva. A inteligência de quem já passou pelo mesmo desafio está disponível para quem está vivendo agora.</p>
+        </div>
+      </div>
+      <div class="metodo__step">
+        <div class="metodo__n">04</div>
+        <div>
+          <p class="metodo__step-tag">Etapa</p>
+          <h3 class="metodo__step-title">Vivências com Debrief</h3>
+          <p class="metodo__step-text">Experiências fora do comum, vividas juntas, seguidas de debrief com aplicação direta a negócios. Memórias compartilhadas criam vínculos de um tipo que reuniões formais de networking não criam.</p>
+        </div>
+      </div>
+      <div class="metodo__step">
+        <div class="metodo__n">05</div>
+        <div>
+          <p class="metodo__step-tag">Etapa</p>
+          <h3 class="metodo__step-title">Imersões</h3>
+          <p class="metodo__step-text">Visita estruturada à empresa de uma integrante: o grupo conhece o negócio por dentro, identifica oportunidades de parceria e aprende com modelos reais de empreendedorismo feminino.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 PARA QUEM -->
+<section class="paraquem">
+  <div class="wrap">
+    <h2 class="paraquem__h2">
+      O WClub é para quem já tem negócio e quer crescer via rede e via pessoas certas ao redor.
+    </h2>
+    <p class="paraquem__intro">
+      O perfil de quem se beneficia do clube é específico. Você tem um produto ou serviço definido, entrega bem, tem clientes satisfeitos. O negócio funciona. O que ainda não funciona é o canal de indicações: você depende de tráfego pago, de prospecção ativa ou de indicações informais que chegam sem consistência.
+    </p>
+    <ul class="paraquem__list">
+      <li><span class="paraquem__check"></span>Você tem negócio ativo com faturamento mensal a partir de R$30.000</li>
+      <li><span class="paraquem__check"></span>Você tem produto ou serviço definido e atende clientes com regularidade</li>
+      <li><span class="paraquem__check"></span>Você quer crescer via indicações estruturadas e via inteligência coletiva de pares</li>
+      <li><span class="paraquem__check"></span>Você quer pertencer a um ambiente 100% feminino com curadoria de perfil de negócio</li>
+      <li><span class="paraquem__check"></span>Você quer estar ao lado de mulheres que estão resolvendo os mesmos desafios que você</li>
+    </ul>
+    <p class="paraquem__nao">
+      Se você ainda está construindo o produto, busca mentoria individual ou quer um ambiente mais voltado à inspiração do que à geração de negócio, existe um caminho mais adequado para esse momento.
+    </p>
+  </div>
+</section>
+
+<!-- 08 ENTREGAVEIS -->
+<section class="ent">
+  <div class="wrap">
+    <h2 class="ent__h2">O que você tem acesso ao entrar no WClub.</h2>
+    <div class="ent__grid">
+      <div class="ent__item">
+        <div class="ent__item-bar"></div>
+        <h3 class="ent__item-title">Protocolo WClub de Indicações</h3>
+        <p class="ent__item-text">O método estruturado que transforma encontros em contratos. Você aprende e aplica o protocolo desde o primeiro encontro, com dinâmicas conduzidas para fazer pontes ativas entre as integrantes.</p>
+      </div>
+      <div class="ent__item">
+        <div class="ent__item-bar"></div>
+        <h3 class="ent__item-title">Encontros Presenciais</h3>
+        <p class="ent__item-text">Cada encontro tem pauta estruturada para crescimento do negócio, protocolo de indicações, rodada de resultado e espaço para resolver desafios reais com quem conhece o seu negócio.</p>
+      </div>
+      <div class="ent__item">
+        <div class="ent__item-bar"></div>
+        <h3 class="ent__item-title">Vivências com Debrief</h3>
+        <p class="ent__item-text">Experiências vividas em grupo, com debrief de aplicação direta ao negócio. As vivências criam o tipo de vínculo que reuniões formais não criam.</p>
+      </div>
+      <div class="ent__item">
+        <div class="ent__item-bar"></div>
+        <h3 class="ent__item-title">Imersões</h3>
+        <p class="ent__item-text">Visitas estruturadas às empresas. O grupo conhece o negócio por dentro, identifica oportunidades de parceria e aprende com modelos reais de empreendedorismo feminino.</p>
+      </div>
+      <div class="ent__item">
+        <div class="ent__item-bar"></div>
+        <h3 class="ent__item-title">Gravações e Área Exclusiva</h3>
+        <p class="ent__item-text">Todos os encontros online ficam gravados e disponíveis em área exclusiva. Você revê o que precisar, no seu ritmo, sem perder nada do que foi discutido.</p>
+      </div>
+      <div class="ent__item">
+        <div class="ent__item-bar"></div>
+        <h3 class="ent__item-title">Guia de Onboarding WClub</h3>
+        <p class="ent__item-text">Material de entrada que prepara você para aproveitar o clube do primeiro ao último encontro: como funciona o protocolo, o que esperar de cada formato e como se posicionar desde o início.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 BONUS -->
+<section class="bonus">
+  <div class="wrap">
+    <h2 class="bonus__h2">Bônus exclusivos para Membros Fundadoras.</h2>
+    <div class="bonus__items">
+      <div class="bonus__item">
+        <div>
+          <p class="bonus__badge">Bônus 01</p>
+          <h3 class="bonus__title">Reunião Individual de Diagnóstico com Lilian</h3>
+          <p class="bonus__text">Antes do seu primeiro encontro, Lilian reúne com você individualmente para entender o seu negócio a fundo e identificar as primeiras oportunidades de ponte ainda na entrada. Você chega ao primeiro encontro já vista.</p>
+        </div>
+        <div class="bonus__val">
+          <p class="bonus__val-label">Valor</p>
+          <p class="bonus__val-num">R$6.000</p>
+        </div>
+      </div>
+      <div class="bonus__item">
+        <div>
+          <p class="bonus__badge">Bônus 02</p>
+          <h3 class="bonus__title">Perfil Empresarial</h3>
+          <p class="bonus__text">Cada integrante recebe um perfil estruturado das demais: quem são, o que fazem, para quem vendem e o que estão buscando. Você chega sabendo com quem está na sala.</p>
+        </div>
+        <div class="bonus__val">
+          <p class="bonus__val-label">Valor</p>
+          <p class="bonus__val-num">R$497</p>
+        </div>
+      </div>
+      <div class="bonus__item">
+        <div>
+          <p class="bonus__badge">Bônus 03</p>
+          <h3 class="bonus__title">Lock de Preço de Fundadora</h3>
+          <p class="bonus__text">As 10 primeiras têm o preço de entrada diferenciado para as renovações seguintes. As fundadoras renovam com 60% de desconto sobre o preço vigente, independente dos reajustes futuros.</p>
+        </div>
+        <div class="bonus__val">
+          <p class="bonus__val-label">Valor</p>
+          <p class="bonus__val-num">Incalculável</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 OFERTA -->
+<section class="oferta" id="oferta">
+  <div class="oferta__card">
+    <p class="eyebrow oferta__eyebrow">Membro Fundadora</p>
+    <h2 class="oferta__h2">10 vagas. Quando fecharem, o valor passa por reajuste.</h2>
+    <p class="oferta__body">
+      Como Membro Fundadora, você entra com o preço travado para as renovações seguintes, tem acesso a tudo que o clube oferece desde o primeiro encontro e faz parte do grupo que define como o WClub funciona desde o início.
+    </p>
+    <div class="oferta__prices">
+      <div>
+        <p class="oferta__price-lbl">Parcelado em</p>
+        <p class="oferta__price-num">12x R$1.500</p>
+      </div>
+      <div class="oferta__price-alt">
+        <p class="oferta__price-lbl">ou à vista</p>
+        <p style="font-size:18px;font-family:var(--font-sans);font-weight:500;color:var(--muted)">R$16.500</p>
+      </div>
+    </div>
+    <a href="https://form.typeform.com/to/I571G6yO" target="_blank" rel="noopener" class="btn">Quero aplicar como Membro Fundadora</a>
+  </div>
+</section>
+
+<!-- 12 SUPORTE -->
+<section class="suporte">
+  <div class="wrap">
+    <p class="suporte__quote">"Você não terá um ticket de suporte. Terá o grupo das fundadoras, os encontros mensais e acesso direto à Lilian para o que precisar."</p>
+    <p class="suporte__body">O WClub tem curadoria de perfil porque indicação de qualidade depende de quem está na sala. Quando você tiver uma dúvida, uma decisão difícil ou uma oportunidade que surgiu fora do encontro, você leva para o grupo ou fala diretamente com quem pode ajudar.</p>
+  </div>
+</section>
+
+<!-- 13 GARANTIA -->
+<section class="garantia">
+  <div class="garantia__inner">
+    <div class="garantia__seal">
+      <span>Processo<br>de<br>Aplicação</span>
+    </div>
+    <h2 class="garantia__h2">O WClub não oferece garantia de reembolso. Oferece algo mais rigoroso: um processo de aplicação.</h2>
+    <p class="garantia__text">Antes de qualquer pagamento, você passa por uma entrevista de alinhamento. Avaliamos o seu negócio, o seu momento e o seu perfil dentro do grupo. Se não for a combinação certa para os dois lados, a resposta é não. Se for aprovada, é porque avaliamos que este é o ambiente certo para o seu momento.</p>
+    <p class="garantia__text" style="margin-top:16px">A curadoria existe para proteger quem entra, não para dificultar o acesso. Uma sala com fit real entrega mais resultado do que qualquer política de devolução.</p>
+  </div>
+</section>
+
+<!-- 14 AUTORIDADE -->
+<section class="autoridade">
+  <div class="autoridade__grid">
+    <div class="autoridade__foto">
+      <img src="assets/lilian.jpg" alt="Lilian Cidreira">
+    </div>
+    <div>
+      <p class="eyebrow autoridade__eyebrow">Lilian Cidreira</p>
+      <h2 class="autoridade__h2">A mesa que ela queria estar não existia. Então ela construiu.</h2>
+      <div class="autoridade__body">
+        <p>Lilian fundou sua empresa em 2016 no ramo de educação. Desde então atua com programas de desenvolvimento em grandes empresas e como mentora para profissionais e empreendedores. Entre as organizações que já atendeu: Itaú, Natura, Nestlé, Mercado Livre, Globo e Petrobras.</p>
+        <p>Quando se tornou empreendedora, tentou encontrar um ambiente de networking construído para o jeito que ela funciona. Frequentou grupos, clubes e eventos. Saiu de todos com a mesma sensação: muitos contatos, poucas pontes reais, nenhum protocolo.</p>
+        <p>Em vez de continuar procurando, ela construiu. O WClub nasceu de uma decisão prática: se o ambiente certo não existe, você cria.</p>
+        <p>A experiência com líderes de grandes organizações, entendendo como pessoas constroem reputação, influência e negócio dentro de estruturas complexas, é o que está por trás de cada dinâmica do clube.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 15 FAQ -->
+<section class="faq">
+  <div class="wrap">
+    <h2 class="faq__h2">Perguntas frequentes.</h2>
+    <div class="faq__list">
+      <div class="faq__row">
+        <button class="faq__q" onclick="toggle(this)">Como funciona o processo de aplicação? <span class="faq__icon">+</span></button>
+        <p class="faq__a">Você preenche um formulário com informações sobre o seu negócio. Se o perfil tiver fit com o que o clube busca, Lilian entra em contato para uma conversa de alinhamento. Nessa conversa, avaliamos juntas se faz sentido para os dois lados. O pagamento só acontece depois dessa etapa.</p>
+      </div>
+      <div class="faq__row">
+        <button class="faq__q" onclick="toggle(this)">E se eu não conseguir ir a todos os encontros? <span class="faq__icon">+</span></button>
+        <p class="faq__a">O protocolo funciona com presença consistente. Eventualidades acontecem e são compreensíveis. Para os encontros presenciais, o comprometimento é parte do que faz o clube funcionar: quanto mais presente, mais a rede trabalha por você. Os encontros online ficam gravados na área exclusiva.</p>
+      </div>
+      <div class="faq__row">
+        <button class="faq__q" onclick="toggle(this)">Já participei de outros grupos de networking sem resultado. Por que o WClub seria diferente? <span class="faq__icon">+</span></button>
+        <p class="faq__a">Em outros formatos, a indicação depende de boa vontade, memória e timing. No WClub, o protocolo cria o momento certo para as pontes acontecerem, independente de extroversão ou de saber como apresentar o próprio negócio. A curadoria de perfil faz com que a probabilidade de match comercial seja estrutural, não aleatória.</p>
+      </div>
+      <div class="faq__row">
+        <button class="faq__q" onclick="toggle(this)">Quanto tempo por mês preciso dedicar? <span class="faq__icon">+</span></button>
+        <p class="faq__a">Um encontro presencial mensal mais a presença no grupo de WhatsApp para trocas e oportunidades que surgem fora do encontro. As vivências e imersões acontecem em datas específicas ao longo do ano, comunicadas com antecedência.</p>
+      </div>
+      <div class="faq__row">
+        <button class="faq__q" onclick="toggle(this)">Não gosto de trocas por WhatsApp. O clube depende disso? <span class="faq__icon">+</span></button>
+        <p class="faq__a">O WhatsApp é o canal entre os encontros, não o centro do clube. As trocas mais importantes acontecem presencialmente. O grupo existe para oportunidades que surgem entre um encontro e outro, não para conteúdo diário ou conversas longas.</p>
+      </div>
+      <div class="faq__row">
+        <button class="faq__q" onclick="toggle(this)">Já participo de masterminds. Faz sentido entrar no WClub também? <span class="faq__icon">+</span></button>
+        <p class="faq__a">Mastermind e WClub têm objetivos diferentes. Mastermind foi construído para compartilhar estratégia de negócio. O WClub foi construído para transformar relações em contratos e oferecer desenvolvimento em rede feminina. São formatos complementares. Se o que falta no seu mastermind são indicações estruturadas entre pares, o WClub resolve essa parte.</p>
+      </div>
+      <div class="faq__row">
+        <button class="faq__q" onclick="toggle(this)">Ainda há vagas disponíveis? <span class="faq__icon">+</span></button>
+        <p class="faq__a">As vagas de Membro Fundadora são limitadas. Quando fecharem, o clube não abre novas vagas sem aviso prévio e o valor passa por reajuste. Se você está lendo esta página, ainda há vagas abertas.</p>
+      </div>
+      <div class="faq__row">
+        <button class="faq__q" onclick="toggle(this)">Como funciona o pagamento? <span class="faq__icon">+</span></button>
+        <p class="faq__a">O pagamento é anual: à vista em R$16.500 ou parcelado em 12x R$1.500. Ele só é realizado após a entrevista de alinhamento e aprovação da sua aplicação.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 16 OFERTA FINAL -->
+<section class="oferta-final">
+  <div class="oferta-final__inner">
+    <img src="assets/logo-escuro.png" alt="WClub" class="oferta-final__logo">
+    <h2 class="oferta-final__h2">Você chegou ao final desta página.</h2>
+    <p class="oferta-final__sub">
+      Se chegou até aqui, é porque reconheceu algo que está faltando. O WClub existe para mulheres que já têm negócio, entregam bem e querem crescer via rede com protocolo. As vagas de Membro Fundadora são limitadas.
+    </p>
+    <div class="oferta-final__prices">
+      <div>
+        <p class="oferta-final__price-lbl">Parcelado em</p>
+        <p class="oferta-final__price-num">12x R$1.500</p>
+      </div>
+      <div>
+        <p class="oferta-final__price-lbl">ou à vista</p>
+        <p class="oferta-final__price-alt">R$16.500</p>
+      </div>
+    </div>
+    <a href="https://form.typeform.com/to/I571G6yO" target="_blank" rel="noopener" class="btn">Quero aplicar como Membro Fundadora</a>
+    <p class="oferta-final__nota">
+      Ao aplicar, você será contatada para uma conversa de alinhamento. Só após essa conversa e aprovação das duas partes é que o pagamento é realizado.
+    </p>
+  </div>
+</section>
+
+<!-- BARRA FLUTUANTE MOBILE -->
+<div class="float-cta" id="floatCta">
+  <div class="float-cta__inner">
+    <div class="float-cta__info">
+      <p class="float-cta__label">Membro Fundadora</p>
+      <p class="float-cta__price">12x R$1.500</p>
+    </div>
+    <a href="https://form.typeform.com/to/I571G6yO" target="_blank" rel="noopener" class="float-cta__btn">Quero aplicar</a>
+  </div>
+</div>
+
+<script>
+function toggle(btn) {
+  var row = btn.parentElement;
+  var isOpen = row.classList.contains('open');
+  document.querySelectorAll('.faq__row.open').forEach(function(r){ r.classList.remove('open'); });
+  if (!isOpen) row.classList.add('open');
+}
+
+// Barra flutuante mobile: aparece após rolar além do hero
+(function() {
+  var bar = document.getElementById('floatCta');
+  if (!bar) return;
+  var shown = false;
+
+  function onScroll() {
+    var scrolled = window.scrollY || window.pageYOffset;
+    var heroH = document.querySelector('.hero') ? document.querySelector('.hero').offsetHeight : 400;
+    if (scrolled > heroH * 0.7 && !shown) {
+      shown = true;
+      bar.classList.add('visible');
+      document.body.classList.add('bar-visible');
+    } else if (scrolled <= heroH * 0.4 && shown) {
+      shown = false;
+      bar.classList.remove('visible');
+      document.body.classList.remove('bar-visible');
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+</script>
+
+</body>
+</html>
